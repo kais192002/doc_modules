@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>اقتراح مقاييس عروض دكتوراه - Study in Algeria</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #004080;
+      padding: 10px 20px;
+      color: white;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-top: 30px;
+      color: #004080;
+    }
+
+    .intro, .note, .proposed-section {
+      max-width: 900px;
+      margin: auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: block;
+      width: fit-content;
+      margin: 20px auto;
+      padding: 12px 24px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .note {
+      background-color: #fff8e1;
+      border-left: 5px solid #ffc107;
+    }
+
+    ul {
+      padding-right: 20px;
+    }
+
+    #measures-list li {
+      background-color: #eef2f7;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      list-style-type: none;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logo_faculte.png" alt="لوغو الكلية">
+  <h2>كلية العلوم الاقتصادية والتجارية وعلوم التسيير</h2>
+  <img src="logo_departement.png" alt="لوغو القسم">
+</header>
+
+<h1>مساهمة الأساتذة في اقتراح عناوين مقاييس عروض دكتوراه لفائدة الطلبة الأجانب</h1>
+
+<div class="intro">
+  في إطار مبادرة وزارة التعليم العالي والبحث العلمي <strong>Study in Algeria</strong>، ندعو أساتذتنا الكرام إلى المساهمة باقتراح مقاييس علمية نوعية لفتح عروض دكتوراه باللغة الأجنبية لفائدة الطلبة الأجانب. 
+  تمثل هذه الخطوة فرصة لإبراز القدرات الأكاديمية للجامعة وتعزيز انفتاحها على المحيط الدولي.
+</div>
+
+<!-- زر فتح نموذج Google Form -->
+<button class="btn" onclick="window.open('https://forms.gle/isjBLGbWR3nznQy2A', '_blank')">
+  تعبئة نموذج اقتراح المقياس
+</button>
+
+<div class="note">
+  <strong>ملاحظات مهمة للأساتذة المشاركين:</strong>
+  <ul>
+    <li>يجب أن يكون المقياس المقترح ذا طابع أكاديمي ويمكن تدريسه باللغة الأجنبية.</li>
+    <li>أن يتوافق مع أحد التخصصين المفتوحين: <strong>اقتصاد دولي</strong> أو <strong>اقتصاد كمي</strong>.</li>
+    <li>أن يعكس المعايير الدولية وأن يكون مستوحى من مقاييس دكتوراه معتمدة بالخارج.</li>
+    <li>يمكن لكل أستاذ اقتراح مقياسين كحد أقصى.</li>
+  </ul>
+</div>
+
+<!-- عرض المقاييس المقترحة -->
+<div class="proposed-section">
+  <h2>عناوين المقاييس المقترحة</h2>
+  <ul id="measures-list">
+    <li>جاري تحميل البيانات...</li>
+  </ul>
+</div>
+
+<!-- Script لعرض المقاييس من Google Apps Script -->
+<script>
+fetch("https://script.google.com/macros/s/AKfycbz3K0JbGT7g97Ow7Tit9rlT0hIBoFZKvvI9kdd778j6K_KUkcZDQH9SMmMSsUqySQ7P/exec") // ← استبدل هذا بالرابط الفعلي
+  .then(response => response.json())
+  .then(data => {
+    const list = document.getElementById("measures-list");
+    list.innerHTML = ''; // مسح "جاري التحميل..."
+    data.forEach(entry => {
+      const li = document.createElement("li");
+      li.textContent = `📘 ${entry.measure_ar} | ${entry.measure_en} | ${entry.measure_fr}`;
+      list.appendChild(li);
+    });
+  })
+  .catch(error => {
+    document.getElementById("measures-list").innerHTML = '<li>حدث خطأ أثناء تحميل البيانات.</li>';
+    console.error("خطأ:", error);
+  });
+</script>
+
+</body>
+</html>
